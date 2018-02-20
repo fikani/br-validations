@@ -18,8 +18,8 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
-    "flatModuleOutFile": "br-validations.js",
-    "flatModuleId": "@fikani/br-validations"
+    "flatModuleOutFile": "forms.js",
+    "flatModuleId": "@fikani/forms"
   },
   "files": ["./index.ts"]
 }

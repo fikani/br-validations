@@ -6,8 +6,10 @@ import { NgModule } from "@angular/core";
 import { Component } from "@angular/core";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 
-import { CpfModule } from "../dist";
 import { FormsModule } from "@angular/forms";
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/observable/interval";
+import { CpfModule, FikaniFormsModule } from "../dist";
 
 @Component({
   selector: "app",
@@ -15,12 +17,20 @@ import { FormsModule } from "@angular/forms";
 })
 class AppComponent {
   cpf: string;
+  words: string;
+  minwords: number = 3;
+
+  constructor() {
+    Observable.interval(2000).subscribe(_ => {
+      this.minwords = _;
+    });
+  }
 }
 
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [AppComponent],
-  imports: [BrowserModule, FormsModule, CpfModule]
+  imports: [BrowserModule, FormsModule, CpfModule, FikaniFormsModule]
 })
 class AppModule {}
 

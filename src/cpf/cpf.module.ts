@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { CpfDirective } from "./cpf";
+import { CpfDirective } from "./cpf.directive";
 
 @NgModule({
   imports: [],

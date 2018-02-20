@@ -1,11 +1,11 @@
-# @fikani/br-validations
+# @fikani/forms
 
 ## Installation
 
 To install this library, run:
 
 ```bash
-$ npm install @fikani/br-validations --save
+$ npm install @fikani/forms --save
 ```
 
 ## Consuming this library
@@ -17,7 +17,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { AppComponent } from "./app.component";
-import { CpfModule } from "@fikani/br-validations";
+import { CpfModule } from "@fikani/forms";
 
 @NgModule({
   declarations: [AppComponent],

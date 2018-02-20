@@ -1,12 +1,11 @@
 {
-  "name": "@fikani/br-validations",
+  "name": "@fikani/forms",
   "version": "0.1.0",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
     "docs": "npm run docs:build",
-    "docs:build":
-      "compodoc -p tsconfig.json -n br-validations -d docs --hideGenerator",
+    "docs:build": "compodoc -p tsconfig.json -n forms -d docs --hideGenerator",
     "docs:serve": "npm run docs:build -- -s",
     "docs:watch": "npm run docs:build -- -s -w",
     "lint": "tslint --type-check --project tsconfig.json src/**/*.ts",
@@ -18,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fikani/br-validations"
+    "url": "https://github.com/fikani/forms"
   },
   "author": {
     "name": "Afif Fikani",
@@ -27,7 +26,7 @@
   "keywords": ["angular"],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fikani/br-validations/issues"
+    "url": "https://github.com/fikani/forms/issues"
   },
   "devDependencies": {
     "@angular/common": "^5.0.0",
