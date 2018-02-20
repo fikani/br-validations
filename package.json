@@ -1,6 +1,6 @@
 {
   "name": "@fikani/forms",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -11,8 +11,7 @@
     "lint": "tslint --type-check --project tsconfig.json src/**/*.ts",
     "lite": "lite-server",
     "playground:build": "tsc -p playground -w",
-    "playground":
-      "concurrently \"npm run build:watch\" \"npm run playground:build\" \"npm run lite\"",
+    "playground": "concurrently \"npm run build:watch\" \"npm run playground:build\" \"npm run lite\"",
     "test": "tsc && karma start"
   },
   "repository": {
@@ -23,7 +22,9 @@
     "name": "Afif Fikani",
     "email": "afif.fikani@gmail.com"
   },
-  "keywords": ["angular"],
+  "keywords": [
+    "angular"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/fikani/forms/issues"
