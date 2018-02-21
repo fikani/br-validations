@@ -18,13 +18,10 @@ import { CpfModule, FikaniFormsModule } from "../dist";
 class AppComponent {
   cpf: string;
   words: string;
+  validateEqual: string;
   minwords: number = 3;
 
-  constructor() {
-    Observable.interval(2000).subscribe(_ => {
-      this.minwords = _;
-    });
-  }
+  constructor() {}
 }
 
 @NgModule({
