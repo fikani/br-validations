@@ -5,7 +5,8 @@ import {
   Output,
   EventEmitter,
   ElementRef,
-  OnDestroy
+  OnDestroy,
+  ViewContainerRef
 } from "@angular/core";
 import {
   NgModel,
@@ -30,25 +31,21 @@ import { Subscription } from "rxjs/Subscription";
 export class EqualsToDirective implements Validator, OnDestroy {
   @Input() validateEqual: string;
   @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
-  sub: Subscription;
-  value: any;
+  subling: Element;
+  hasListener = false;
 
   constructor(private el: ElementRef) {}
   validate(c: AbstractControl): { [key: string]: any } {
     // self value (e.g. retype password)
-    this;
-    this.value = c.value;
     // control value (e.g. password)
-    let e: FormControl = c.root.get(this.validateEqual) as FormControl;
-    if (e) {
-      this.sub =
-        this.sub ||
-        e.valueChanges.subscribe(_ => {
-          console.log(_);
-          this.el.nativeElement.dispatchEvent(new Event("input"), "");
-        });
+    this.subling = this.subling || this.getElement(this.validateEqual);
+    if (this.subling instanceof HTMLInputElement) {
+      if (!this.hasListener) {
+        this.subling.addEventListener("input", this.eventListener);
+        this.hasListener = true;
+      }
       // value not equal
-      if (this.value !== e.value)
+      if (c.value && c.value !== this.subling.value)
         return {
           validateEqual: false
         };
@@ -56,6 +53,18 @@ export class EqualsToDirective implements Validator, OnDestroy {
     return null;
   }
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.subling.removeEventListener("input", this.eventListener);
+  }
+
+  eventListener = e => {
+    this.el.nativeElement.dispatchEvent(new Event("input"), "");
+  };
+
+  getElement(name: string): Element {
+    let htmlElement: HTMLElement = this.el.nativeElement;
+    while (["FORM", "BODY"].indexOf(htmlElement.tagName) == -1) {
+      htmlElement = htmlElement.parentElement;
+    }
+    return htmlElement.querySelector(`input[name='${name}']`);
   }
 }
