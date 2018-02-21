@@ -72,6 +72,20 @@ example :
 {{wordsInput.errors | json}} // { "minwords": { "minWordsLength": 4, "actualWordsLength": 1 } }
 ```
 
+## Equal validation
+
+Use the `EqualsToDirective` : `[validateEqual][formControlName],[validateEqual][formControl],[validateEqual][ngModel]`.
+
+* Validator to be use in features like confirm email or confirm password.
+
+example :
+
+```html
+ <input type="text" #wordsInput="ngModel" name="words2" [(ngModel)]="words" />
+ <input type="text" validateEqual="words2" #validateEqualModel="ngModel" name="validateEqual"
+        [(ngModel)]="validateEqual" /> {{validateEqualModel.valid}} {{validateEqualModel.errors | json}}
+```
+
 ## License
 
 MIT © [Afif Fikani](mailto:afif.fikani@gmail.com)
