@@ -16,6 +16,7 @@ import {
   FormControl
 } from "@angular/forms";
 import { Subscription } from "rxjs/Subscription";
+import { Utils } from "./utils";
 
 @Directive({
   selector:
@@ -40,7 +41,9 @@ export class EqualsToDirective implements Validator, OnDestroy {
     //keep last value
     this.value = c.value;
     //get sibling
-    this.subling = this.subling || this.getElement(this.validateEqual);
+    this.subling =
+      this.subling ||
+      Utils.getElement(this.validateEqual, this.el.nativeElement);
     if (this.subling instanceof HTMLInputElement) {
       //listen to sibling's input event
       if (!this.hasListener) {
@@ -66,11 +69,11 @@ export class EqualsToDirective implements Validator, OnDestroy {
     }
   };
 
-  getElement(name: string): Element {
-    let htmlElement: HTMLElement = this.el.nativeElement;
-    while (["FORM", "BODY"].indexOf(htmlElement.tagName) == -1) {
-      htmlElement = htmlElement.parentElement;
-    }
-    return htmlElement.querySelector(`input[name='${name}']`);
-  }
+  // getElement(name: string): Element {
+  //   let htmlElement: HTMLElement = this.el.nativeElement;
+  //   while (["FORM", "BODY"].indexOf(htmlElement.tagName) == -1) {
+  //     htmlElement = htmlElement.parentElement;
+  //   }
+  //   return htmlElement.querySelector(`input[name='${name}']`);
+  // }
 }

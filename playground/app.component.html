@@ -1,8 +1,11 @@
 <form #form="ngForm">
     <input type="text" placeholder="CPF" cpf #cpfInput="ngModel" name="cpf" [(ngModel)]="cpf" /> {{cpfInput.valid}} {{cpfInput.errors | json}}
     <input type="text" placeholder="words" [minwords]="minwords" #wordsInput="ngModel" name="words2" [(ngModel)]="words" /> {{wordsInput.valid}} {{wordsInput.errors | json}} {{ minwords }}
+    <input type="password" placeholder="password" name="pass" />
     <div>
         <input type="text" placeholder="validateEqual" validateEqual="words2" #validateEqualModel="ngModel" name="validateEqual"
             [(ngModel)]="validateEqual" /> {{validateEqualModel.valid}} {{validateEqualModel.errors | json}}
     </div>
+    <label toggle-pwd="pass">asdasdasasd</label>
+
 </form>
