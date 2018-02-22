@@ -33,19 +33,22 @@ export class EqualsToDirective implements Validator, OnDestroy {
   @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
   subling: Element;
   hasListener = false;
+  value: string;
 
   constructor(private el: ElementRef) {}
   validate(c: AbstractControl): { [key: string]: any } {
-    // self value (e.g. retype password)
-    // control value (e.g. password)
+    //keep last value
+    this.value = c.value;
+    //get sibling
     this.subling = this.subling || this.getElement(this.validateEqual);
     if (this.subling instanceof HTMLInputElement) {
+      //listen to sibling's input event
       if (!this.hasListener) {
         this.subling.addEventListener("input", this.eventListener);
         this.hasListener = true;
       }
       // value not equal
-      if (c.value && c.value !== this.subling.value)
+      if (this.value && this.value !== this.subling.value)
         return {
           validateEqual: false
         };
@@ -56,8 +59,11 @@ export class EqualsToDirective implements Validator, OnDestroy {
     this.subling.removeEventListener("input", this.eventListener);
   }
 
+  //update if sibling updates
   eventListener = e => {
-    this.el.nativeElement.dispatchEvent(new Event("input"), "");
+    if (this.value) {
+      this.el.nativeElement.dispatchEvent(new Event("input"), "");
+    }
   };
 
   getElement(name: string): Element {
