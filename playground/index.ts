@@ -9,7 +9,7 @@ import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 import { FormsModule } from "@angular/forms";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/interval";
-import { CpfModule, FikaniFormsModule } from "../dist";
+import { CpfModule, CnpjModule, FikaniFormsModule } from "../dist";
 
 @Component({
   selector: "app",
@@ -17,6 +17,7 @@ import { CpfModule, FikaniFormsModule } from "../dist";
 })
 class AppComponent {
   cpf: string;
+  cnpj: string;
   words: string;
   validateEqual: string;
   minwords: number = 3;
@@ -27,7 +28,13 @@ class AppComponent {
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [AppComponent],
-  imports: [BrowserModule, FormsModule, CpfModule, FikaniFormsModule]
+  imports: [
+    BrowserModule,
+    FormsModule,
+    CpfModule,
+    CnpjModule,
+    FikaniFormsModule
+  ]
 })
 class AppModule {}
 

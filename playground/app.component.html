@@ -8,4 +8,6 @@
     </div>
     <label toggle-pwd="pass">asdasdasasd</label>
 
+    <input type="text" cnpj placeholder="cnpj" name="cnpj" #cnpjModel="ngModel" [(ngModel)]="cnpj" /> {{ cnpjModel.errors | json}}
+
 </form>
